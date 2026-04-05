@@ -7,50 +7,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Chosen Palette: Warm Neutrals (Slate-50) background, with deep reds (Crimson), burnt oranges (Rust), and stark slates to convey urgency and professionalism. Calming teal/blue used for the solutions phase. -->
-    
-    <!-- Application Structure Plan: The SPA is structured as an interactive executive briefing for the hotel owner. 
-    1. 'Executive Summary' with high-impact KPIs to immediately establish the severity of the situation.
-    2. 'Data Drill-Down' featuring interactive Chart.js visualizations. A high-level donut chart shows category breakdowns; clicking it filters a detailed bar chart, allowing the owner to explore exact failure points without feeling overwhelmed by a static table.
-    3. 'The Guest Voice' section using stylized cards to highlight real, alarming quotes, connecting the data to actual guest sentiment.
-    4. 'Strategic Action Plan' presenting the phased solutions clearly, transitioning the narrative from 'problem' to 'resolution'.
-    This flow is chosen to shock the owner with data, validate it with quotes, and immediately offer a structured lifeline. -->
-    
-    <!-- Visualization & Content Choices: 
-    - Goal: Inform (High Level) -> Viz: KPI Cards (HTML/Tailwind) -> Interaction: Hover effects -> Justification: Immediate impact of total numbers.
-    - Goal: Proportions -> Viz: Doughnut Chart (Chart.js) -> Interaction: Click to filter -> Justification: Shows which operational area is bleeding the most points. NO SVG used.
-    - Goal: Compare Specifics -> Viz: Horizontal Bar Chart (Chart.js) -> Interaction: Dynamically updates based on Doughnut click -> Justification: Best for reading long sub-category labels and comparing exact complaint counts. NO SVG used.
-    - Goal: Emphasize Severity -> Viz: Text Quote Cards (HTML/Tailwind) -> Interaction: None -> Justification: Raw qualitative data adds emotional weight to the quantitative charts.
-    - Goal: Organize Solutions -> Viz: Phased Action Cards (HTML/Tailwind) -> Interaction: Hover elevation -> Justification: Clear, step-by-step presentation of the business proposal. -->
-    
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
     <style>
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #f8fafc;
             color: #0f172a;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 450px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
-        }
+        
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Restrict hover effects to devices with a mouse to avoid sticky states on mobile tap */
+        @media (hover: hover) {
+            .hover-lift {
+                transition: transform 0.2s ease-in-out;
+            }
+            .hover-lift:hover {
+                transform: translateY(-4px);
+            }
         }
     </style>
 </head>
@@ -59,12 +39,14 @@
     <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="text-xl font-bold tracking-tight">&#9888; City Suites Operational Audit</div>
-            <div class="text-sm font-medium text-slate-300">Data Source: 100 Recent 1-Star Reviews</div>
+            <!-- Hidden on smallest screens to prevent overflow -->
+            <div class="text-sm font-medium text-slate-300 hidden sm:block">Data Source: 100 Recent 1-Star Reviews</div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
 
+        <!-- Executive Summary -->
         <section id="executive-summary" class="fade-in">
             <div class="mb-6">
                 <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">Executive Summary</h1>
@@ -72,22 +54,22 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-red-600 transition-transform hover:-translate-y-1">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-red-600 hover-lift">
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Total Complaints</div>
                     <div class="mt-2 text-4xl font-extrabold text-slate-900">225</div>
                     <div class="mt-1 text-sm text-red-600 font-medium">&#9650; Across 100 Bookings</div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-orange-600 transition-transform hover:-translate-y-1">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-orange-600 hover-lift">
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Hygiene Failures</div>
                     <div class="mt-2 text-4xl font-extrabold text-slate-900">85</div>
                     <div class="mt-1 text-sm text-orange-600 font-medium">38% of total volume</div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-amber-600 transition-transform hover:-translate-y-1">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-amber-600 hover-lift">
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Maintenance Issues</div>
                     <div class="mt-2 text-4xl font-extrabold text-slate-900">65</div>
                     <div class="mt-1 text-sm text-amber-600 font-medium">Includes 4 severe safety hazards</div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-slate-700 transition-transform hover:-translate-y-1">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 border-l-4 border-l-slate-700 hover-lift">
                     <div class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Staff / Management</div>
                     <div class="mt-2 text-4xl font-extrabold text-slate-900">49</div>
                     <div class="mt-1 text-sm text-slate-600 font-medium">Aggravates all other issues</div>
@@ -95,30 +77,44 @@
             </div>
         </section>
 
+        <!-- Interactive Analysis -->
         <section id="interactive-analysis" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 fade-in">
             <div class="mb-8 border-b border-slate-100 pb-6">
                 <h2 class="text-2xl font-bold text-slate-900">Interactive Complaint Breakdown</h2>
-                <p class="text-slate-600 mt-2">Explore the exact areas driving away revenue. <strong>Click on a segment in the Doughnut chart</strong> (left) to filter and reveal the specific sub-category complaints in the Bar chart (right). Click the center of the doughnut to reset.</p>
+                <!-- Device-agnostic instructions -->
+                <p class="text-slate-600 mt-2">Explore the exact areas driving away revenue. <strong>Select a segment in the Doughnut chart</strong> to filter and reveal the specific sub-category complaints in the Bar chart.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center w-full">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 text-center">Primary Categories</h3>
-                    <div class="chart-container">
+                    
+                    <div class="relative w-full max-w-[400px] h-[350px]">
                         <canvas id="mainCategoryChart"></canvas>
+                        <!-- Center text moved to HTML for perfect mobile scaling -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-4">
+                            <div id="centerValue" class="text-4xl font-extrabold text-slate-900">225</div>
+                            <div id="centerLabel" class="text-sm font-medium text-slate-500">Total Issues</div>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-500 mt-4 text-center w-full">Interactive: Click segments to drill down.</p>
+                    
+                    <!-- Explicit touch-friendly Reset Button -->
+                    <button id="resetChartBtn" onclick="resetCharts()" class="hidden mt-6 px-5 py-2.5 bg-slate-100 text-slate-700 rounded-lg text-sm font-semibold hover:bg-slate-200 transition-colors border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-300">
+                        &#8634; Reset View
+                    </button>
                 </div>
 
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center w-full">
                     <h3 id="subChartTitle" class="text-lg font-semibold text-slate-800 mb-4 text-center">All Sub-Categories</h3>
-                    <div class="chart-container">
+                    <!-- Height adjusted to be taller on mobile (450px) to accommodate all 14 bars comfortably -->
+                    <div class="relative w-full h-[450px] md:h-[400px]">
                         <canvas id="subCategoryChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- The Guest Voice -->
         <section id="guest-voice" class="fade-in">
             <div class="mb-6">
                 <h2 class="text-2xl font-bold text-slate-900">The Guest Voice</h2>
@@ -144,6 +140,7 @@
             </div>
         </section>
 
+        <!-- Action Plan -->
         <section id="action-plan" class="fade-in">
             <div class="mb-8">
                 <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Strategic Action Plan</h2>
@@ -151,7 +148,6 @@
             </div>
 
             <div class="space-y-6">
-                
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row">
                     <div class="bg-teal-600 text-white p-6 md:w-1/3 flex flex-col justify-center">
                         <div class="text-teal-200 font-bold tracking-wider uppercase text-sm mb-1">Phase 1</div>
@@ -217,7 +213,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -231,27 +226,23 @@
         // Data Structure mirroring the Review Tracker
         const rawData = {
             categories: [
-                { id: 0, label: 'Cleanliness & Hygiene', value: 85, color: '#dc2626' }, // Red-600
-                { id: 1, label: 'Staff & Management', value: 49, color: '#475569' },    // Slate-600
-                { id: 2, label: 'Condition & Maintenance', value: 65, color: '#d97706' },// Amber-600
-                { id: 3, label: 'Amenities & Tech', value: 26, color: '#2563eb' }     // Blue-600
+                { id: 0, label: 'Cleanliness & Hygiene', value: 85, color: '#dc2626' }, 
+                { id: 1, label: 'Staff & Management', value: 49, color: '#475569' },    
+                { id: 2, label: 'Condition & Maintenance', value: 65, color: '#d97706' },
+                { id: 3, label: 'Amenities & Tech', value: 26, color: '#2563eb' }      
             ],
             subCategories: [
-                // Cleanliness
                 { parentId: 0, label: 'General Dirt & Dust', value: 36 },
                 { parentId: 0, label: 'Bad Odors / Sewage', value: 26 },
                 { parentId: 0, label: 'Severe Biohazards', value: 13 },
                 { parentId: 0, label: 'Dirty Linens', value: 10 },
-                // Staff
                 { parentId: 1, label: 'Rude/Unhelpful Staff', value: 27 },
                 { parentId: 1, label: 'Bait/Switch & Access', value: 12 },
                 { parentId: 1, label: 'Hidden Fees/Deposits', value: 10 },
-                // Condition
                 { parentId: 2, label: 'Old/Broken Furniture', value: 35 },
                 { parentId: 2, label: 'Plumbing & Bathrooms', value: 15 },
                 { parentId: 2, label: 'AC Malfunctions', value: 11 },
                 { parentId: 2, label: 'Severe Safety Hazards', value: 4 },
-                // Amenities
                 { parentId: 3, label: 'Missing Amenities/No Parking', value: 14 },
                 { parentId: 3, label: 'Failing Tech/Environment', value: 12 }
             ]
@@ -260,6 +251,12 @@
         let mainChartInstance = null;
         let subChartInstance = null;
         let currentFilterId = null;
+
+        // UI Element References
+        const centerValueEl = document.getElementById('centerValue');
+        const centerLabelEl = document.getElementById('centerLabel');
+        const resetBtnEl = document.getElementById('resetChartBtn');
+        const subChartTitleEl = document.getElementById('subChartTitle');
 
         // Utility to chunk long labels for Chart.js
         const wrapLabel = (label, maxLength = 16) => {
@@ -298,7 +295,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '65%',
+                    cutout: '70%',
                     plugins: {
                         legend: { position: 'bottom', labels: { padding: 20, font: { family: 'Inter, sans-serif' } } },
                         tooltip: {
@@ -314,43 +311,17 @@
                             const index = elements[0].index;
                             const categoryId = rawData.categories[index].id;
                             const categoryName = rawData.categories[index].label;
+                            const categoryValue = rawData.categories[index].value;
                             
-                            // Visual feedback on doughnut
+                            // Visual feedback on doughnut (dim other slices)
                             const bgColors = rawData.categories.map((c, i) => i === index ? c.color : '#e2e8f0');
                             mainChartInstance.data.datasets[0].backgroundColor = bgColors;
                             mainChartInstance.update();
 
-                            updateSubChart(categoryId, categoryName);
-                        } else {
-                            // Reset if clicked outside slices
-                            resetCharts();
+                            updateSubChart(categoryId, categoryName, categoryValue);
                         }
                     }
-                },
-                plugins: [{
-                    id: 'centerTextPlugin',
-                    beforeDraw: function(chart) {
-                        const width = chart.width, height = chart.height, ctx = chart.ctx;
-                        ctx.restore();
-                        const fontSize = (height / 160).toFixed(2);
-                        ctx.font = "bold " + fontSize + "em sans-serif";
-                        ctx.textBaseline = "middle";
-                        ctx.fillStyle = "#0f172a";
-                        
-                        let text = currentFilterId === null ? "225" : rawData.categories[currentFilterId].value;
-                        let textX = Math.round((width - ctx.measureText(text).width) / 2);
-                        let textY = height / 2 - 15;
-                        ctx.fillText(text, textX, textY);
-                        
-                        ctx.font = "normal " + (fontSize * 0.4) + "em sans-serif";
-                        ctx.fillStyle = "#64748b";
-                        let subText = currentFilterId === null ? "Total" : "Issues";
-                        let subTextX = Math.round((width - ctx.measureText(subText).width) / 2);
-                        let subTextY = height / 2 + 15;
-                        ctx.fillText(subText, subTextX, subTextY);
-                        ctx.save();
-                    }
-                }]
+                }
             });
 
             // Sub Category Bar Chart (Initial state: All)
@@ -395,9 +366,16 @@
             });
         }
 
-        function updateSubChart(categoryId, categoryName) {
+        function updateSubChart(categoryId, categoryName, categoryValue) {
             currentFilterId = categoryId;
-            document.getElementById('subChartTitle').innerText = `Drill-Down: ${categoryName}`;
+            subChartTitleEl.innerText = `Drill-Down: ${categoryName}`;
+            
+            // Update Center HTML
+            centerValueEl.innerText = categoryValue;
+            centerLabelEl.innerText = "Issues";
+            
+            // Show Reset Button
+            resetBtnEl.classList.remove('hidden');
             
             const filteredData = rawData.subCategories
                 .filter(s => s.parentId === categoryId)
@@ -413,11 +391,20 @@
 
         function resetCharts() {
             currentFilterId = null;
-            document.getElementById('subChartTitle').innerText = 'All Sub-Categories';
+            subChartTitleEl.innerText = 'All Sub-Categories';
             
+            // Reset Center HTML
+            centerValueEl.innerText = "225";
+            centerLabelEl.innerText = "Total Issues";
+            
+            // Hide Reset Button
+            resetBtnEl.classList.add('hidden');
+            
+            // Reset Doughnut Colors
             mainChartInstance.data.datasets[0].backgroundColor = rawData.categories.map(c => c.color);
             mainChartInstance.update();
 
+            // Reset Bar Chart Data
             const allSubData = [...rawData.subCategories].sort((a, b) => b.value - a.value);
             subChartInstance.data.labels = allSubData.map(s => wrapLabel(s.label, 20));
             subChartInstance.data.datasets[0].data = allSubData.map(s => s.value);
