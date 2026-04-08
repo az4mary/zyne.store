@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121212"></stop>
+      <stop offset="100%" stop-color="#050505"></stop>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6f4d12"></stop>
+      <stop offset="18%" stop-color="#b98522"></stop>
+      <stop offset="42%" stop-color="#f4d77a"></stop>
+      <stop offset="65%" stop-color="#c9962d"></stop>
+      <stop offset="100%" stop-color="#7a5417"></stop>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"></feDropShadow>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="512" height="512" rx="72" fill="url(#bg)"></rect>
+  <rect x="18" y="18" width="476" height="476" rx="54" fill="none" stroke="#2a1c08" stroke-width="2"></rect>
+
+  <g filter="url(#shadow)">
+    <path d="M110 118
+             L392 118
+             L392 155
+             L224 155
+             L383 343
+             L383 394
+             L104 394
+             L104 357
+             L278 357
+             L118 168
+             L118 118
+             Z" fill="url(#gold)"></path>
+
+    <path d="M84 108
+             C100 94, 123 89, 154 89
+             L154 118
+             L110 118
+             C95 118, 86 114, 84 108
+             Z" fill="url(#gold)"></path>
+
+    <path d="M392 118
+             L392 89
+             C423 89, 446 94, 462 108
+             C460 114, 451 118, 436 118
+             Z" fill="url(#gold)"></path>
+
+    <path d="M104 394
+             L104 423
+             C73 423, 50 418, 34 404
+             C36 398, 45 394, 60 394
+             Z" fill="url(#gold)"></path>
+
+    <path d="M358 394
+             L402 394
+             C417 394, 426 398, 428 404
+             C412 418, 389 423, 358 423
+             Z" fill="url(#gold)"></path>
+
+    <path d="M180 160
+             L226 160
+             L332 284
+             L286 284
+             Z" fill="#f8e3a2" opacity="0.23"></path>
+  </g>
+</svg>
