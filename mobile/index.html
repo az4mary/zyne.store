@@ -93,7 +93,7 @@
 </head>
 <body class="text-app-text-main antialiased selection:bg-app-accent-gold selection:text-black">
 
-<div class="h-dvh flex flex-col md:flex-row overflow-hidden w-full">
+<div class="flex flex-col md:flex-row w-full md:h-dvh md:overflow-hidden">
 
     <aside class="w-64 bg-app-header border-r border-zinc-900 hidden md:flex flex-col flex-shrink-0">
         <div class="p-6 border-b border-zinc-900 flex flex-col items-start">
@@ -134,7 +134,7 @@
             <span class="w-2 h-2 rounded-full bg-app-accent-red animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
         </div>
     </header>
-    <main class="flex-1 overflow-y-auto bg-[#050505] custom-scrollbar" id="scrollArea">
+    <main class="flex-1 bg-[#050505] md:overflow-y-auto custom-scrollbar pt-28 md:pt-0" id="scrollArea">
         <div class="max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-8 pb-28 md:pb-12 space-y-8">
             
             <section class="fade-in" aria-labelledby="critical-metrics">
@@ -354,26 +354,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         
-        // --- 1. Mobile Scroll Logic ---
+// --- 1. Mobile Scroll Logic ---
         const mobileHeader = document.getElementById('mobileHeader');
         const mobileNav = document.getElementById('mobileNav');
-        const scrollArea = document.getElementById('scrollArea'); // Target the main scroll container
         
         let lastScrollTop = 0;
         const delta = 10;
         
-        scrollArea.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function() {
             if (window.innerWidth >= 768) return;
-            let currentScrollTop = scrollArea.scrollTop;
+            
+            // Listen to the window scroll now instead of the div
+            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
             
             // Prevent iOS rubber-band scrolling
-            if (currentScrollTop <= 0 || currentScrollTop >= scrollArea.scrollHeight - scrollArea.clientHeight) return;
+            if (currentScrollTop <= 0 || currentScrollTop >= document.documentElement.scrollHeight - window.innerHeight) return;
             if (Math.abs(lastScrollTop - currentScrollTop) <= delta) return;
             
             if (currentScrollTop > lastScrollTop && currentScrollTop > 60) {
+                // Scroll Down: Hide custom headers
                 mobileHeader.style.transform = 'translateY(-100%)';
                 mobileNav.style.transform = 'translateY(100%)';
             } else {
+                // Scroll Up: Show custom headers
                 mobileHeader.style.transform = 'translateY(0)';
                 mobileNav.style.transform = 'translateY(0)';
             }
