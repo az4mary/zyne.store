@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>City Suites Operational Audit</title>
+    
+    <!-- ZYNE Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/assets/ZYNE-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/ZYNE-favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ZYNE-apple-touch-icon.png">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style data-purpose="custom-fonts">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Pure black background */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        app: {
+                            bg: '#000000',      /* Pure black to seamlessly blend the ZYNE logo */
+                            header: '#0a0a0a',  /* Deep charcoal for the navigation/sidebar */
+                            card: '#18181b',    /* Zinc 900 - Dark charcoal for data cards */
+                            text: {
+                                main: '#f8fafc', /* Off-white for primary readability */
+                                sub: '#a1a1aa',  /* Zinc 400 - Muted gray for secondary text */
+                                light: '#ffffff' /* Pure white */
+                            },
+                            accent: {
+                                gold: '#d4af37', /* Rich metallic gold matched to the logo */
+                                red: '#ef4444',
+                                green: '#22c55e',
+                                darkzinc: '#27272a',  /* Zinc 800 */
+                                midzinc: '#3f3f46',   /* Zinc 700 */
+                                lightzinc: '#52525b'  /* Zinc 600 */
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Responsive App Layout - Mobile First */
+        .app-layout {
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .scrollable-content {
+            flex-grow: 1;
+        }
+
+        /* Desktop specific layout */
+        @media (min-width: 768px) {
+            .app-layout {
+                height: 100dvh;
+                flex-direction: row;
+                overflow: hidden;
+            }
+            .main-wrapper {
+                height: 100dvh;
+                overflow: hidden;
+            }
+            .scrollable-content {
+                overflow-y: auto;
+                height: 100%;
+            }
+            .scrollable-content::-webkit-scrollbar {
+                width: 6px;
+            }
+            .scrollable-content::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .scrollable-content::-webkit-scrollbar-thumb {
+                background-color: rgba(212, 175, 55, 0.2); /* Subtle gold scrollbar */
+                border-radius: 10px;
+            }
+            .scrollable-content::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        @media (hover: hover) {
+            .hover-lift {
+                transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+                border-color: rgba(212, 175, 55, 0.3); /* Gold glow on hover */
+            }
+        }
+    </style>
+</head>
+<body class="text-app-text-main antialiased selection:bg-app-accent-gold selection:text-black">
+
+<div class="app-layout">
+
+    <!-- BEGIN: Side Navigation (Tablet/Desktop Only) -->
+    <aside class="w-64 bg-app-header border-r border-zinc-900 hidden md:flex flex-col flex-shrink-0">
+        <div class="p-6 border-b border-zinc-900 flex flex-col items-start">
+            <!-- ZYNE LOGO -->
+            <img src="/assets/ZYNE Logo Trans.jpg" alt="ZYNE Luxury Real Estate" class="w-auto h-16 mb-6 object-contain">
+            
+            <div class="text-[10px] text-app-accent-gold font-bold uppercase tracking-widest mb-1">Executive Briefing</div>
+            <h1 class="text-lg font-bold text-app-text-light leading-tight">City Suites Audit</h1>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2">
+            <button class="w-full flex items-center space-x-3 text-app-accent-gold bg-zinc-900/50 border border-zinc-800/50 px-4 py-3 rounded-lg transition-colors text-left shadow-inner">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <span class="text-sm font-semibold tracking-wide">Dashboard</span>
+            </button>
+            <button class="w-full flex items-center space-x-3 text-app-text-sub hover:text-app-text-light hover:bg-zinc-900/30 px-4 py-3 rounded-lg transition-colors text-left">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                <span class="text-sm font-medium tracking-wide">Analytics</span>
+            </button>
+            <button class="w-full flex items-center space-x-3 text-app-text-sub hover:text-app-text-light hover:bg-zinc-900/30 px-4 py-3 rounded-lg transition-colors text-left">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                <span class="text-sm font-medium tracking-wide">Action Plan</span>
+            </button>
+        </nav>
+        <div class="p-6 border-t border-zinc-900">
+            <div class="bg-zinc-900 rounded-lg px-3 py-2 flex items-center justify-between border border-zinc-800 text-app-text-sub">
+                <span class="text-xs font-medium">Data: 100 Reviews</span>
+                <span class="w-2 h-2 rounded-full bg-app-accent-red animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+            </div>
+        </div>
+    </aside>
+    <!-- END: Side Navigation -->
+
+    <div class="main-wrapper">
+        <!-- BEGIN: Mobile Header -->
+        <header id="mobileHeader" class="bg-app-header border-b border-zinc-900 w-full pt-6 pb-4 px-5 shadow-lg flex items-center justify-between text-app-text-light z-40 fixed top-0 left-0 md:relative md:hidden flex-shrink-0 transition-transform duration-300 ease-in-out">
+            <div class="flex items-center space-x-3">
+                <!-- ZYNE MOBILE ICON -->
+                <img src="/assets/ZYNE favicon.png" alt="ZYNE" class="h-9 w-9 object-contain">
+                <div>
+                    <div class="text-[10px] text-app-accent-gold font-bold uppercase tracking-widest mb-0.5">Executive Briefing</div>
+                    <h1 class="text-lg font-bold truncate leading-tight">City Suites Audit</h1>
+                </div>
+            </div>
+            <div class="bg-zinc-900 rounded-lg px-2.5 py-1.5 flex items-center border border-zinc-800">
+                <span class="w-2 h-2 rounded-full bg-app-accent-red animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+            </div>
+        </header>
+        <!-- END: Mobile Header -->
+
+        <!-- BEGIN: MainContent -->
+        <main class="scrollable-content bg-[#050505]" id="scrollArea">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-8 pb-28 md:pb-12 space-y-8">
+                
+                <!-- SECTION: Executive Summary -->
+                <section class="fade-in">
+                    <h2 class="text-app-text-sub text-sm md:text-base font-semibold mb-4 tracking-wide flex items-center uppercase">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 text-app-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Critical Metrics
+                    </h2>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
+                        <!-- Total Card -->
+                        <div class="bg-app-card rounded-xl p-4 shadow-lg relative overflow-hidden flex flex-col justify-between border border-zinc-800/80 hover-lift">
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-app-accent-gold shadow-[0_0_10px_rgba(212,175,55,0.4)]"></div>
+                            <div>
+                                <p class="text-[10px] md:text-xs font-bold text-app-text-sub uppercase tracking-wider">Total Complaints</p>
+                                <div class="mt-1 md:mt-2">
+                                    <span class="text-3xl md:text-4xl font-extrabold text-app-text-light">225</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-xs font-semibold text-app-accent-red mt-2 md:mt-3 flex items-center bg-red-950/40 border border-red-900/50 w-max px-2 py-0.5 rounded">
+                                <svg class="w-3 h-3 md:w-3.5 md:h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                Across 100 Stays
+                            </p>
+                        </div>
+                        <!-- Hygiene Card -->
+                        <div class="bg-app-card rounded-xl p-4 shadow-lg relative overflow-hidden flex flex-col justify-between border border-zinc-800/80 hover-lift">
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-app-accent-darkzinc"></div>
+                            <div>
+                                <p class="text-[10px] md:text-xs font-bold text-app-text-sub uppercase tracking-wider">Hygiene Failures</p>
+                                <div class="mt-1 md:mt-2">
+                                    <span class="text-3xl md:text-4xl font-extrabold text-app-text-light">85</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-xs font-semibold text-app-text-sub mt-2 md:mt-3 bg-zinc-800/50 border border-zinc-700/50 w-max px-2 py-0.5 rounded">
+                                38% of Volume
+                            </p>
+                        </div>
+                        <!-- Maintenance Card -->
+                        <div class="bg-app-card rounded-xl p-4 shadow-lg relative overflow-hidden flex flex-col justify-between border border-zinc-800/80 hover-lift">
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-app-accent-midzinc"></div>
+                            <div>
+                                <p class="text-[10px] md:text-xs font-bold text-app-text-sub uppercase tracking-wider">Maintenance</p>
+                                <div class="mt-1 md:mt-2">
+                                    <span class="text-3xl md:text-4xl font-extrabold text-app-text-light">65</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-xs font-semibold text-app-accent-red mt-2 md:mt-3 flex items-center bg-red-950/40 border border-red-900/50 w-max px-2 py-0.5 rounded">
+                                4 Severe Hazards
+                            </p>
+                        </div>
+                        <!-- Staff Card -->
+                        <div class="bg-app-card rounded-xl p-4 shadow-lg relative overflow-hidden flex flex-col justify-between border border-zinc-800/80 hover-lift">
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-app-accent-lightzinc"></div>
+                            <div>
+                                <p class="text-[10px] md:text-xs font-bold text-app-text-sub uppercase tracking-wider">Staff / Mgmt</p>
+                                <div class="mt-1 md:mt-2">
+                                    <span class="text-3xl md:text-4xl font-extrabold text-app-text-light">49</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] md:text-xs font-semibold text-app-text-sub mt-2 md:mt-3 bg-zinc-800/50 border border-zinc-700/50 w-max px-2 py-0.5 rounded">
+                                Aggravating Factor
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Desktop Layout Grid (Visuals on Left, Action/Reviews on Right) -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    
+                    <!-- LEFT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- SECTION: Visual Breakdown -->
+                        <section class="fade-in delay-1 h-full">
+                            <h2 class="text-app-text-sub text-sm md:text-base font-semibold mb-4 tracking-wide flex items-center uppercase">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 text-app-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                                Issue Distribution
+                            </h2>
+                            
+                            <div class="bg-app-card rounded-xl p-5 md:p-6 shadow-xl border border-zinc-800/80 h-[calc(100%-2.5rem)] flex flex-col justify-between">
+                                <!-- Doughnut Overview -->
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800/60 pb-6 mb-6">
+                                    <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto sm:mx-0 flex-shrink-0">
+                                        <canvas id="donutChart"></canvas>
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                            <span class="text-2xl md:text-3xl font-black text-app-text-light leading-none">225</span>
+                                            <span class="text-[10px] md:text-xs font-semibold text-app-text-sub uppercase tracking-widest mt-0.5 md:mt-1">Total</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-6 sm:mt-0 sm:ml-6 flex-1 space-y-3">
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-zinc-300">
+                                            <div class="flex items-center font-medium"><span class="w-2.5 h-2.5 md:w-3 md:h-3 rounded bg-app-accent-gold mr-3 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></span>Hygiene</div>
+                                            <span class="font-bold text-app-text-light">38%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-zinc-300">
+                                            <div class="flex items-center font-medium"><span class="w-2.5 h-2.5 md:w-3 md:h-3 rounded bg-app-accent-lightzinc mr-3"></span>Maintenance</div>
+                                            <span class="font-bold text-app-text-light">29%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-zinc-300">
+                                            <div class="flex items-center font-medium"><span class="w-2.5 h-2.5 md:w-3 md:h-3 rounded bg-app-accent-midzinc mr-3"></span>Staff</div>
+                                            <span class="font-bold text-app-text-light">22%</span>
+                                        </div>
+                                        <div class="flex items-center justify-between text-xs md:text-sm text-zinc-300">
+                                            <div class="flex items-center font-medium"><span class="w-2.5 h-2.5 md:w-3 md:h-3 rounded bg-app-accent-darkzinc mr-3"></span>Amenities</div>
+                                            <span class="font-bold text-app-text-light">11%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CSS Stacked Bars -->
+                                <div class="space-y-6">
+                                    <h3 class="text-[11px] md:text-xs font-bold uppercase text-app-text-sub tracking-wider mb-4">Detailed Breakdown</h3>
+                                    
+                                    <!-- Hygiene Bar -->
+                                    <div>
+                                        <div class="flex justify-between text-xs md:text-sm mb-2">
+                                            <span class="font-bold text-app-accent-gold">Hygiene</span>
+                                            <span class="text-app-text-sub font-medium">85 Issues</span>
+                                        </div>
+                                        <div class="flex h-3 md:h-3.5 rounded-full overflow-hidden bg-zinc-800">
+                                            <div class="bg-[#d4af37]" style="width: 42%" title="Dirt & Dust"></div>
+                                            <div class="bg-[#b49020]" style="width: 30%" title="Odors"></div>
+                                            <div class="bg-[#8b6d13]" style="width: 16%" title="Biohazards"></div>
+                                            <div class="bg-[#614b09]" style="width: 12%" title="Linens"></div>
+                                        </div>
+                                        <div class="flex text-[9px] md:text-[10px] text-zinc-400 mt-2.5 space-x-4 font-medium overflow-x-auto pb-1">
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#d4af37] rounded-full mr-1.5 shadow-[0_0_5px_rgba(212,175,55,0.5)]"></div>Dirt (36)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#b49020] rounded-full mr-1.5"></div>Odors (26)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#8b6d13] rounded-full mr-1.5"></div>Hazards (13)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Maintenance Bar -->
+                                    <div>
+                                        <div class="flex justify-between text-xs md:text-sm mb-2">
+                                            <span class="font-bold text-zinc-300">Maintenance</span>
+                                            <span class="text-app-text-sub font-medium">65 Issues</span>
+                                        </div>
+                                        <div class="flex h-3 md:h-3.5 rounded-full overflow-hidden bg-zinc-800">
+                                            <div class="bg-[#71717a] w-[54%]"></div>
+                                            <div class="bg-[#52525b] w-[23%]"></div>
+                                            <div class="bg-[#3f3f46] w-[17%]"></div>
+                                            <div class="bg-[#27272a] w-[6%]"></div>
+                                        </div>
+                                        <div class="flex text-[9px] md:text-[10px] text-zinc-400 mt-2.5 space-x-4 font-medium overflow-x-auto pb-1">
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#71717a] rounded-full mr-1.5"></div>Furniture (35)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#52525b] rounded-full mr-1.5"></div>Plumbing (15)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#3f3f46] rounded-full mr-1.5"></div>AC (11)</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Staff Bar -->
+                                    <div>
+                                        <div class="flex justify-between text-xs md:text-sm mb-2">
+                                            <span class="font-bold text-zinc-400">Staff / Mgmt</span>
+                                            <span class="text-app-text-sub font-medium">49 Issues</span>
+                                        </div>
+                                        <div class="flex h-3 md:h-3.5 rounded-full overflow-hidden bg-zinc-800">
+                                            <div class="bg-[#52525b] w-[55%]"></div>
+                                            <div class="bg-[#3f3f46] w-[25%]"></div>
+                                            <div class="bg-[#27272a] w-[20%]"></div>
+                                        </div>
+                                        <div class="flex text-[9px] md:text-[10px] text-zinc-400 mt-2.5 space-x-4 font-medium">
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#52525b] rounded-full mr-1.5"></div>Rude (27)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#3f3f46] rounded-full mr-1.5"></div>Bait/Switch (12)</span>
+                                            <span class="flex items-center whitespace-nowrap"><div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#27272a] rounded-full mr-1.5"></div>Fees (10)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- SECTION: Action Plan -->
+                        <section class="fade-in delay-3">
+                            <h2 class="text-app-text-sub text-sm md:text-base font-semibold mb-4 tracking-wide flex items-center uppercase">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 text-app-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                Strategic Recovery Plan
+                            </h2>
+                            
+                            <div class="bg-app-card rounded-xl p-5 md:p-6 shadow-xl border border-zinc-800/80 space-y-6">
+                                <!-- Phase 1 -->
+                                <div class="relative overflow-hidden">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-xs md:text-sm text-zinc-300">Phase 1: <span class="font-bold text-white">Digital Triage</span></div>
+                                        <span class="bg-green-900/30 text-green-400 text-[10px] md:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wide border border-green-800/50">In Progress</span>
+                                    </div>
+                                    <div class="w-full h-1.5 md:h-2 bg-zinc-800 rounded-full overflow-hidden flex mb-4">
+                                        <div class="bg-app-accent-green w-[65%] h-full rounded-full shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+                                    </div>
+                                    <ul class="text-[11px] md:text-xs text-zinc-400 space-y-3 font-medium">
+                                        <li class="flex items-start">
+                                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-app-accent-green mr-2.5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                            Deploy AI to respond to all incoming & past reviews.
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-app-accent-green mr-2.5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                            Automated pre-arrival WhatsApp communications.
+                                        </li>
+                                        <li class="flex items-start opacity-50">
+                                            <div class="w-3.5 h-3.5 md:w-4 md:h-4 border-2 border-zinc-600 rounded-full mr-2.5 flex-shrink-0 mt-0.5"></div>
+                                            Establish outsourced Digital Concierge Shield.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="w-full h-px bg-zinc-800/60"></div>
+
+                                <!-- Phase 2 -->
+                                <div class="relative overflow-hidden">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-xs md:text-sm text-zinc-300">Phase 2: <span class="font-bold text-white">Operational Pause</span></div>
+                                        <span class="bg-amber-900/20 text-app-accent-gold text-[10px] md:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wide border border-app-accent-gold/30">Pending</span>
+                                    </div>
+                                    <div class="w-full h-1.5 md:h-2 bg-zinc-800 rounded-full overflow-hidden flex mb-4">
+                                        <div class="bg-app-accent-gold w-[15%] h-full rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.5)]"></div>
+                                    </div>
+                                    <ul class="text-[11px] md:text-xs text-zinc-400 space-y-3 font-medium">
+                                        <li class="flex items-start">
+                                            <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-app-accent-gold mr-3 flex-shrink-0 mt-1.5 shadow-[0_0_5px_rgba(212,175,55,0.5)]"></span>
+                                            Immediately repair severe electrical faults.
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-app-accent-gold mr-3 flex-shrink-0 mt-1.5 shadow-[0_0_5px_rgba(212,175,55,0.5)]"></span>
+                                            Halt online bookings for worst-affected blocks.
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="w-full h-px bg-zinc-800/60"></div>
+
+                                <!-- Phase 3 -->
+                                <div class="relative overflow-hidden opacity-60">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-xs md:text-sm text-zinc-400">Phase 3: <span class="font-bold text-zinc-300">Brand Realignment</span></div>
+                                        <span class="bg-zinc-800/50 text-zinc-400 text-[10px] md:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wide border border-zinc-700">Planned</span>
+                                    </div>
+                                    <p class="text-[11px] md:text-xs text-zinc-500 font-medium leading-relaxed">
+                                        Reposition marketing copy from "Deluxe" to "Value" and update OTA listings with accurate photography.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION: Qualitative Impact -->
+                        <section class="fade-in delay-2">
+                            <h2 class="text-app-text-sub text-sm md:text-base font-semibold mb-4 tracking-wide flex items-center uppercase">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 text-app-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                                Qualitative Impact
+                            </h2>
+
+                            <!-- Stacked Cards Effect -->
+                            <div class="relative mx-2 md:mx-4 mt-5 mb-2 md:mb-6 group">
+                                <div class="absolute w-full h-full bg-zinc-800/40 rounded-xl top-4 left-0 right-0 mx-auto -z-20 scale-[0.92] transition-transform group-hover:-translate-y-2 group-hover:rotate-1"></div>
+                                <div class="absolute w-full h-full bg-zinc-800/70 border border-zinc-700/50 rounded-xl top-2 left-0 right-0 mx-auto -z-10 scale-[0.96] transition-transform group-hover:-translate-y-1 group-hover:-rotate-1"></div>
+                                <div class="bg-app-card rounded-xl p-5 md:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative z-0 border border-zinc-700">
+                                    <div class="flex items-center justify-between mb-4 md:mb-5 border-b border-zinc-800 pb-3">
+                                        <span class="text-[10px] md:text-xs font-bold uppercase text-app-accent-gold tracking-wider bg-app-accent-gold/10 border border-app-accent-gold/20 px-2 py-1 rounded">Severe Hazard Report</span>
+                                        <span class="flex text-app-accent-gold text-xs md:text-sm drop-shadow-[0_0_3px_rgba(212,175,55,0.6)]">★☆☆☆☆</span>
+                                    </div>
+                                    <p class="text-sm md:text-base font-medium italic text-zinc-300 leading-relaxed md:leading-loose">"Electric current in water taps... Exposed outlets near TV... Bed bugs everywhere. They ask for a deposit upon entry. I should be the one asking for life insurance!"</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- END: MainContent -->
+    </div>
+
+    <!-- BEGIN: Mobile Bottom Navigation -->
+    <nav id="mobileNav" class="bg-[#0a0a0a] border-t border-zinc-900 fixed bottom-0 w-full flex md:hidden justify-around items-center py-3 px-2 pb-6 z-50 shadow-[0_-10px_25px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-in-out">
+        <button class="flex flex-col items-center text-app-accent-gold focus:outline-none transition-transform active:scale-95">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-[10px] font-semibold tracking-wide drop-shadow-[0_0_5px_rgba(212,175,55,0.4)]">Dashboard</span>
+        </button>
+        <button class="flex flex-col items-center text-app-text-sub hover:text-app-text-light transition-colors focus:outline-none active:scale-95">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+            <span class="text-[10px] font-medium tracking-wide">Analytics</span>
+        </button>
+        <button class="flex flex-col items-center text-app-text-sub hover:text-app-text-light transition-colors focus:outline-none active:scale-95">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            <span class="text-[10px] font-medium tracking-wide">Action Plan</span>
+        </button>
+    </nav>
+    <!-- END: Mobile Bottom Navigation -->
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- Mobile Scroll Hide/Show Logic ---
+        const mobileHeader = document.getElementById('mobileHeader');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        let lastScrollTop = 0;
+        const delta = 10;
+        
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth >= 768) return;
+            
+            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            if (Math.abs(lastScrollTop - currentScrollTop) <= delta) return;
+            
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 60) {
+                mobileHeader.style.transform = 'translateY(-100%)';
+                mobileNav.style.transform = 'translateY(100%)';
+            } else {
+                mobileHeader.style.transform = 'translateY(0)';
+                mobileNav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = currentScrollTop;
+        }, { passive: true });
+
+
+        // --- Dark Mode Donut Chart Configuration ---
+        const ctx = document.getElementById('donutChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Hygiene', 'Maintenance', 'Staff', 'Amenities'],
+                datasets: [{
+                    data: [85, 65, 49, 26],
+                    backgroundColor: [
+                        '#d4af37', // Gold 
+                        '#52525b', // Zinc 600
+                        '#3f3f46', // Zinc 700
+                        '#27272a'  // Zinc 800
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#18181b', // Match card background perfectly
+                    hoverOffset: 4 
+                }]
+            },
+            options: {
+                cutout: '72%',
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true,
+                    duration: 1000,
+                    easing: 'easeOutQuart'
+                },
+                plugins: {
+                    legend: { display: false }, 
+                    tooltip: {
+                        backgroundColor: '#0a0a0a',
+                        titleColor: '#d4af37',
+                        bodyColor: '#f8fafc',
+                        borderColor: '#27272a',
+                        borderWidth: 1,
+                        titleFont: { family: 'Inter', size: 12 },
+                        bodyFont: { family: 'Inter', size: 12 },
+                        padding: 10,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.raw} Complaints`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
