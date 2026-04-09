@@ -605,6 +605,19 @@
         });
 
     });
+
+    // --- Global View Switcher ---
+    window.switchView = function(viewId) {
+        // Hide all views
+        document.getElementById('view-dashboard').classList.add('hidden');
+        document.getElementById('view-audit').classList.add('hidden');
+        
+        // Show target view
+        document.getElementById(viewId).classList.remove('hidden');
+        
+        // Reset scroll position to top
+        document.getElementById('scrollArea').scrollTop = 0;
+    };
 </script>
 </body>
 </html>
