@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZYNE Mobile Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global CSS Variables - Core Palette & Spacing */
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A3A3A3;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #F3E5AB;
+            --border-subtle: #2A2A2A;
+            
+            --spacing-unit: 16px;
+            --border-radius: 4px; /* Sharper edges for a high-end feel */
+            --max-mobile-width: 480px;
+        }
+
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Outer Body */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Mobile-First Container Constraints */
+        #app-wrapper {
+            width: 100%;
+            max-width: var(--max-mobile-width);
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+            position: relative;
+            border-left: 1px solid var(--border-subtle);
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        /* Global Header Settings */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-unit) 24px;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-logo .accent {
+            color: var(--accent-gold);
+        }
+
+        /* Main Content Container */
+        main {
+            padding: 24px var(--spacing-unit);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Reusable UI Components */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            padding: 24px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Primary Call to Action Button */
+        .btn-primary {
+            width: 100%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--accent-gold);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+            background-color: var(--accent-gold-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app-wrapper">
+        
+        <header>
+            <div class="brand-logo">ZY<span class="accent">NE</span></div>
+            
+            <button aria-label="Menu" style="background:none;border:none;color:var(--accent-gold);cursor:pointer;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </header>
+
+        <main id="content-area">
+            
+            <div class="card">
+                <h2>System Ready</h2>
+                <p style="margin-top: 12px; margin-bottom: 24px;">
+                    The structural foundation is active. The interface is locked to a 480px max-width, maintaining the mobile form factor, and global styling variables are set.
+                </p>
+                <button class="btn-primary">Awaiting Data</button>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
