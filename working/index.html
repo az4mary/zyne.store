@@ -1,3 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ZYNE | Dashboard Foundation</title>
+    
+    <link rel="icon" type="image/svg+xml" href="/assets/ZYNE-favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/ZYNE-favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ZYNE-apple-touch-icon.png">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style data-purpose="custom-fonts">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        app: {
+                            bg: '#000000',
+                            header: '#0a0a0a',
+                            card: '#18181b',
+                            text: {
+                                main: '#f8fafc',
+                                sub: '#a1a1aa',
+                                light: '#ffffff'
+                            },
+                            accent: {
+                                gold: '#d4af37',
+                                copper: '#b45309',
+                                slate: '#64748b',
+                                charcoal: '#3f3f46',
+                                red: '#ef4444',
+                                green: '#22c55e',
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animations & Interactions */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        @media (hover: hover) {
+            .hover-lift {
+                transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+                border-color: rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        /* Custom Scrollbar */
+        @media (min-width: 768px) {
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background-color: rgba(212, 175, 55, 0.2);
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(212, 175, 55, 0.4);
+            }
+        }
+    </style>
+</head>
+<body class="text-app-text-main antialiased selection:bg-app-accent-gold selection:text-black">
+
+<div class="flex flex-col md:flex-row w-full md:h-dvh md:overflow-hidden">
+
+    <aside class="w-64 bg-app-header border-r border-zinc-900 hidden md:flex flex-col flex-shrink-0">
+        <div class="p-6 border-b border-zinc-900 flex flex-col items-start">
+            <img src="/assets/ZYNE Logo Trans.png" alt="ZYNE Luxury Real Estate" class="w-auto h-16 mb-6 object-contain">
+            <div class="text-[10px] text-app-accent-gold font-bold uppercase tracking-widest mb-1">Module Active</div>
+            <h1 class="text-lg font-bold text-app-text-light leading-tight">Data Ready</h1>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-2" aria-label="Desktop Navigation">
+            <button aria-label="Go to Dashboard" class="w-full flex items-center space-x-3 text-app-accent-gold bg-zinc-900/50 border border-zinc-800/50 px-4 py-3 rounded-lg transition-colors text-left shadow-inner">
+                <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <span class="text-sm font-semibold tracking-wide">Dashboard</span>
+            </button>
+            <button aria-label="Go to Analytics" class="w-full flex items-center space-x-3 text-app-text-sub hover:text-app-text-light hover:bg-zinc-900/30 px-4 py-3 rounded-lg transition-colors text-left">
+                <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                <span class="text-sm font-medium tracking-wide">Analytics</span>
+            </button>
+            <button aria-label="Go to Action Plan" class="w-full flex items-center space-x-3 text-app-text-sub hover:text-app-text-light hover:bg-zinc-900/30 px-4 py-3 rounded-lg transition-colors text-left">
+                <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                <span class="text-sm font-medium tracking-wide">Action Plan</span>
+            </button>
+        </nav>
+        <div class="p-6 border-t border-zinc-900" aria-hidden="true">
+            <div class="bg-zinc-900 rounded-lg px-3 py-2 flex items-center justify-between border border-zinc-800 text-app-text-sub">
+                <span class="text-xs font-medium">Status: Standby</span>
+                <span class="w-2 h-2 rounded-full bg-app-accent-green animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+            </div>
+        </div>
+    </aside>
+
+    <header id="mobileHeader" class="bg-app-header border-b border-zinc-900 w-full pt-6 pb-4 px-3 sm:px-5 shadow-lg flex items-center justify-between text-app-text-light z-40 fixed top-0 left-0 md:hidden flex-shrink-0 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center space-x-2 overflow-hidden mr-2">
+            <img src="/assets/ZYNE-favicon.png" alt="ZYNE" class="h-7 w-7 sm:h-8 sm:w-8 object-contain flex-shrink-0">
+            <div class="overflow-hidden">
+                <div class="text-[9px] sm:text-[10px] text-app-accent-gold font-bold uppercase tracking-widest mb-0.5 truncate">Module Active</div>
+                <h1 class="text-sm sm:text-base font-bold truncate leading-tight">Data Ready</h1>
+            </div>
+        </div>
+        <div class="bg-zinc-900 rounded-lg px-2 py-1.5 flex items-center border border-zinc-800 flex-shrink-0" aria-label="Status: Standby">
+            <span class="text-[9px] sm:text-[10px] font-medium text-app-text-sub mr-1.5 whitespace-nowrap">Standby</span>
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-app-accent-green animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)] flex-shrink-0"></span>
+        </div>
+    </header>
+
+    <main class="flex-1 bg-[#050505] md:overflow-y-auto custom-scrollbar" id="scrollArea">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-8 pb-28 md:pb-12 space-y-8">
+            
+
+
+        </div>
+    </main>
+
+    <nav id="mobileNav" aria-label="Mobile Navigation" class="bg-[#0a0a0a] border-t border-zinc-900 fixed bottom-0 w-full flex md:hidden justify-around items-center pt-3 px-2 pb-[calc(1.5rem+env(safe-area-inset-bottom))] z-50 shadow-[0_-10px_25px_rgba(0,0,0,0.8)] transition-transform duration-300 ease-in-out">
+        <button aria-label="Go to Dashboard" class="flex flex-col items-center text-app-accent-gold focus:outline-none transition-transform active:scale-95">
+            <svg aria-hidden="true" class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-[10px] font-semibold tracking-wide drop-shadow-[0_0_5px_rgba(212,175,55,0.4)]">Dashboard</span>
+        </button>
+        <button aria-label="Go to Analytics" class="flex flex-col items-center text-app-text-sub hover:text-app-text-light transition-colors focus:outline-none active:scale-95">
+            <svg aria-hidden="true" class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+            <span class="text-[10px] font-medium tracking-wide">Analytics</span>
+        </button>
+        <button aria-label="Go to Action Plan" class="flex flex-col items-center text-app-text-sub hover:text-app-text-light transition-colors focus:outline-none active:scale-95">
+            <svg aria-hidden="true" class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            <span class="text-[10px] font-medium tracking-wide">Action Plan</span>
+        </button>
+    </nav>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Mobile Scroll Logic (Maintained from original settings) ---
+        const mobileHeader = document.getElementById('mobileHeader');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        let lastScrollTop = 0;
+        const delta = 10;
+        
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth >= 768) return;
+            
+            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            if (currentScrollTop <= 0 || currentScrollTop >= document.documentElement.scrollHeight - window.innerHeight) return;
+            if (Math.abs(lastScrollTop - currentScrollTop) <= delta) return;
+            
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 60) {
+                mobileHeader.style.transform = 'translateY(-100%)';
+                mobileNav.style.transform = 'translateY(100%)';
+            } else {
+                mobileHeader.style.transform = 'translateY(0)';
+                mobileNav.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = currentScrollTop;
+        }, { passive: true });
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
 <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 fade-in">
     
     <div class="bg-app-card rounded-xl p-5 md:p-6 shadow-lg border border-zinc-800/80 hover-lift relative overflow-hidden">
