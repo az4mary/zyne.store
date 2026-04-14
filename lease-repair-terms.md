@@ -12,7 +12,8 @@ In the past, I have taken out repair loans in my own name, only to be left finan
     
     - _Note:_ I am open to using your preferred licensed contractor, provided they offer fair pricing and are in good standing with the financing providers.
         
-- **Lease Duration Commitment:** Because the loan is in your name, **you must be absolutely certain you can fulfill the entire 24-month lease duration**, or be prepared to find someone to transfer the loan to if you must leave early.
+-  **Lease & Loan Maturity Alignment:** A mandatory 24-month lease commitment is required. All financing must be structured to be **fully paid off by the end of the 24-month term.**
+-  **Lease Duration Commitment:** Because the loan is in your name, **you must be absolutely certain you can fulfill the entire 24-month lease duration**, or be prepared to find someone to transfer the loan to if you must leave early.
     
 
 ### **2. Payment Management & Dual Protection**
