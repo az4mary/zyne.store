@@ -1,5 +1,5 @@
 ## **Proposed Lease & Repair Financing Structure**
-###Texas Property Code
+### Texas Property Code
 Thank you for your question. It is incredibly important that the financial and repair structures of this lease are completely clear upfront.
 
 In the past, I have taken out repair loans in my own name, only to be left financially responsible when a tenant broke the lease. To prevent this, **the "repair now, pay later" financing for this property will be established in your name.** Here is a detailed breakdown of how this structure works, your protections, and the step-by-step financial expectations.
