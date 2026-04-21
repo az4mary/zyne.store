@@ -2,6 +2,7 @@
 
 EDITED. 4/21/2026
 
+### 24-month Rent Payment Schedule + 24-month Loan Payment Schedule
 This is based on the assumption that the repair loan is $10,000 with $450/monthly payment
 
 | **Amount ($) -** <br>*This is the **ONLY** amount* <br>*tenant pays for each month* | **Date -**<br>*Rent is due 1st of*<br>*each month* | **Comment**                                                 |
