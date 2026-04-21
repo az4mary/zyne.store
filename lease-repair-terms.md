@@ -1,4 +1,38 @@
 ## **Proposed Lease & Repair Financing Structure**
+
+EDITED. 4/21/2026
+
+This is based on the assumption that the repair loan is $10,000 with $450/monthly payment
+
+| **Amount ($) -** <br>*This is the **ONLY** amount* <br>*tenant pays for each month* | **Date -**<br>*Rent is due 1st of*<br>*each month* | **Comment**                                                 |
+| ----------------------------------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------- |
+| 1,400                                                                               | April 2026                                         | May rent paid to Listing Agent<br>1st loan payment included |
+| 450                                                                                 | May 1, 2026                                        | 2nd loan payment paid directly<br>to financial provider     |
+| 950                                                                                 | June 1, 2026                                       | June rent<br>3rd loan payment included                      |
+| 1,400                                                                               | July 1, 2026                                       | July rent<br>4th loan payment included                      |
+| 1,400                                                                               | August 1, 2026                                     | August rent<br>5th loan payment included                    |
+| 1,400                                                                               | September 1, 2026                                  | September rent<br>6th loan payment included                 |
+| 1,400                                                                               | October 1, 2026                                    | October rent<br>7th loan payment included                   |
+| 1,400                                                                               | November 1, 2026                                   | November rent<br>8th loan payment included                  |
+| 1,400                                                                               | December 1, 2026                                   | December rent<br>9th loan payment included                  |
+| 1,400                                                                               | January 1, 2027                                    | January rent<br>10th loan payment included                  |
+| 1,400                                                                               | February 1, 2027                                   | February rent<br>11th loan payment included                 |
+| 1,400                                                                               | March 1, 2027                                      | March rent<br>12th loan payment included                    |
+| 1,400                                                                               | April 1, 2027                                      | April rent<br>13th loan payment included                    |
+| 1,400                                                                               | May 1, 2027                                        | May rent<br>14th loan payment included                      |
+| 1,400                                                                               | June 1, 2027                                       | June rent<br>15th loan payment included                     |
+| 1,400                                                                               | July 1, 2027                                       | July rent<br>16th loan payment included                     |
+| 1,400                                                                               | August 1, 2027                                     | August rent<br>17th loan payment included                   |
+| 1,400                                                                               | September 1, 2027                                  | September rent<br>18th loan payment included                |
+| 1,400                                                                               | October 1, 2027                                    | October rent<br>19th loan payment included                  |
+| 1,400                                                                               | November 1, 2027                                   | November rent<br>20th loan payment included                 |
+| 1,400                                                                               | December 1, 2027                                   | December rent<br>21st loan payment included                 |
+| 1,400                                                                               | January 1, 2028                                    | January rent<br>22nd loan payment included                  |
+| 1,400                                                                               | February 1, 2028                                   | February rent<br>23rd loan payment included                 |
+| 1,400                                                                               | March 1, 2028                                      | March rent<br>24th loan payment included                    |
+| 1,400                                                                               | April 1, 2028                                      | April rent<br>Loan fully PAID                               |
+
+
 Thank you for your question. It is incredibly important that the financial and repair structures of this lease are completely clear upfront.
 
 In the past, I have taken out repair loans in my own name, only to be left financially responsible when a tenant broke the lease. To prevent this, **the "repair now, pay later" financing for this property will be established in your name.** Here is a detailed breakdown of how this structure works, your protections, and the step-by-step financial expectations.
