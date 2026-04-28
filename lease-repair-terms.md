@@ -47,7 +47,7 @@ Tenant understands that because the financing is in Tenant’s name:
 
 The repair financing will be used only for agreed repairs, improvements, or work approved by both parties and documented in writing.
 
-The agreed repair list will be attached as **Exhibit A — Approved Priority Repair List**.
+The agreed repair list will be attached as **Exhibit A - Approved Priority Repair List**.
 
 The parties agree that approximately 80% of the approved priority repairs are intended to be completed before move-in, subject to contractor availability, financing approval, parts/materials, weather, and other reasonable conditions outside either party’s control.
 
@@ -103,7 +103,7 @@ The parties expect the repair financing to be structured so that loan payments a
 
 However, the parties understand that some financing providers may delay the first payment date or structure the loan payment start date differently.
 
-The final loan payment schedule will be attached as **Exhibit B — Loan Payment Schedule**.
+The final loan payment schedule will be attached as **Exhibit B - Loan Payment Schedule**.
 
 ## 9. Tenant’s Direct Loan Payment Responsibility
 
@@ -193,7 +193,7 @@ Because Tenant is the borrower, Tenant remains directly responsible to the finan
 
 **Tenant Initials: ________**
 
-## 17. Early Termination — No Replacement Tenant Yet
+## 17. Early Termination - No Replacement Tenant Yet
 
 If Tenant terminates early and no replacement tenant is paying full rent, Landlord is not required to make loan payments during that vacancy or nonpayment period.
 
@@ -201,7 +201,7 @@ During that period, Tenant must keep the loan current directly with the financin
 
 Landlord will not be responsible for late fees, credit impact, collection activity, or other consequences caused by Tenant failing to keep the loan current during a vacancy or nonpayment period after early termination.
 
-## 18. Early Termination — Replacement Tenant Pays Full Rent
+## 18. Early Termination - Replacement Tenant Pays Full Rent
 
 If Tenant terminates early and Landlord secures a replacement tenant who pays full rent, Landlord will resume the payment-manager role from the replacement rent received.
 
@@ -209,7 +209,7 @@ After receiving full rent from the replacement tenant, Landlord will use the agr
 
 Landlord’s obligation under this section applies only after Landlord receives full rent from the replacement tenant.
 
-## 19. Early Termination — Reimbursement to Tenant
+## 19. Early Termination - Reimbursement to Tenant
 
 If Tenant made out-of-pocket loan payments after early termination because no replacement tenant was paying full rent, Landlord will reimburse Tenant from replacement rent once full replacement rent is received.
 
@@ -217,7 +217,7 @@ Tenant must provide proof of each out-of-pocket loan payment.
 
 Landlord’s reimbursement obligation will continue until Tenant has been reimbursed for qualifying payments made during the vacancy or nonpayment period, but Landlord is not required to reimburse Tenant from personal funds before receiving full replacement rent.
 
-## 20. Lease Completion — Loan Still Current but Not Fully Paid
+## 20. Lease Completion - Loan Still Current but Not Fully Paid
 
 This section applies only if:
 
@@ -229,7 +229,7 @@ In that situation, Landlord agrees to make the remaining loan payments beginning
 
 Under this specific lease-completion scenario, Landlord will make the remaining payments even if Tenant no longer occupies the Property.
 
-## 21. Lease Completion — Loan Not Current
+## 21. Lease Completion - Loan Not Current
 
 If the loan is not current as of April 30, 2028 because Tenant failed to make required payments, failed to pay rent, or otherwise caused the account to become delinquent, Landlord is not responsible for Tenant-caused late fees, penalties, credit impact, collection activity, or delinquency.
 
@@ -303,11 +303,11 @@ Any change must be in writing and signed by both Landlord and Tenant.
 
 The following exhibits will be attached before signing:
 
-- **Exhibit A — Approved Priority Repair List**
-- **Exhibit B — Loan Payment Schedule**
-- **Exhibit C — Financing Provider Terms**
-- **Exhibit D — Contractor Estimate / Invoice**
-- **Exhibit E — Move-In Condition Report**
+- **Exhibit A - Approved Priority Repair List**
+- **Exhibit B - Loan Payment Schedule**
+- **Exhibit C - Financing Provider Terms**
+- **Exhibit D - Contractor Estimate / Invoice**
+- **Exhibit E - Move-In Condition Report**
 
 ## 31. Acknowledgment
 
