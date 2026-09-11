@@ -1,7 +1,7 @@
 export const repairScheduleContent = {
   title: "Repair Schedule",
   seoTitle: "Repair Schedule | ZYNE",
-  description: "Tentative repair schedule for property safety, systems, interior, exterior, and final repair work from September 2026 through July 2029.",
+  description: "Tentative repair schedule for property safety, systems, interior, exterior, and final repair work from September 2026 through August 2029.",
   canonicalPath: "/repair-schedule/",
   eyebrow: "Posted 07/31/2026",
   intro: "This tentative schedule organizes repair work by phase, work description, and expected timeframe. Timing may be refined as work is coordinated.",
@@ -22,7 +22,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 1",
       title: "Safety & Baseline",
-      timeframe: "September 2026",
+      timeframe: "September - October 2026",
       image: {
         file: "living-room.webp",
         alt: "Living room ceiling fan and interior baseline condition at 7101 Wendemere St"
@@ -41,7 +41,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 2",
       title: "Structural & Systems",
-      timeframe: "October 2026 - April 2027",
+      timeframe: "November 2026 - May 2027",
       image: {
         file: "back-yard.webp",
         alt: "Rear exterior and yard view showing foundation and exterior systems context at 7101 Wendemere St"
@@ -53,7 +53,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 3",
       title: "Interior Cosmetics & Comfort",
-      timeframe: "May - November 2027",
+      timeframe: "June - December 2027",
       image: {
         file: "kitchen.webp",
         alt: "Kitchen interior showing plumbing, outlet, door, flooring, and wall finish context at 7101 Wendemere St"
@@ -68,7 +68,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 4",
       title: "Exterior & Low-Priority",
-      timeframe: "December 2027 - May 2029",
+      timeframe: "January 2028 - June 2029",
       image: {
         file: "front-yard.webp",
         alt: "Front yard, mailbox, fence, and exterior approach at 7101 Wendemere St"
@@ -83,7 +83,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 5",
       title: "Final Touches",
-      timeframe: "June - July 2029",
+      timeframe: "July - August 2029",
       image: {
         file: "front-yard-mailbox-carport.png",
         alt: "Cropped front yard view showing the mailbox and carport approach at 7101 Wendemere St"
