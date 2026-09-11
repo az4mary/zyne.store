@@ -1,7 +1,7 @@
 export const repairScheduleContent = {
   title: "Repair Schedule",
   seoTitle: "Repair Schedule | ZYNE",
-  description: "Tentative repair schedule for property safety, systems, interior, exterior, and final repair work from August 2026 through July 2029.",
+  description: "Tentative repair schedule for property safety, systems, interior, exterior, and final repair work from September 2026 through July 2029.",
   canonicalPath: "/repair-schedule/",
   eyebrow: "Posted 07/31/2026",
   intro: "This tentative schedule organizes repair work by phase, work description, and expected timeframe. Timing may be refined as work is coordinated.",
@@ -22,7 +22,7 @@ export const repairScheduleContent = {
     {
       phase: "Phase 1",
       title: "Safety & Baseline",
-      timeframe: "August - September 2026",
+      timeframe: "September 2026",
       image: {
         file: "living-room.webp",
         alt: "Living room ceiling fan and interior baseline condition at 7101 Wendemere St"
@@ -96,7 +96,7 @@ export const repairScheduleContent = {
   ],
   notes: [
     "Schedule is tentative and based on the posted repair plan dated 07/31/2026.",
-    "Quarterly pest control begins in August 2026 and continues on an ongoing basis.",
+    "Quarterly pest control begins in September 2026 and continues on an ongoing basis.",
     "Cosmetic and lower-priority exterior items are scheduled after safety, systems, and interior comfort work."
   ]
 };
