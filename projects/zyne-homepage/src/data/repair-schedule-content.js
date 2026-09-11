@@ -3,7 +3,7 @@ export const repairScheduleContent = {
   seoTitle: "Repair Schedule | ZYNE",
   description: "Tentative repair schedule for property safety, systems, interior, exterior, and final repair work from September 2026 through August 2029.",
   canonicalPath: "/repair-schedule/",
-  eyebrow: "Posted 07/31/2026",
+  eyebrow: "Posted 09/11/2026",
   intro: "This tentative schedule organizes repair work by phase, work description, and expected timeframe. Timing may be refined as work is coordinated.",
   primaryCta: {
     label: "View Schedule",
@@ -95,7 +95,7 @@ export const repairScheduleContent = {
     }
   ],
   notes: [
-    "Schedule is tentative and based on the posted repair plan dated 07/31/2026.",
+    "Schedule is tentative and based on the posted repair plan dated 09/11/2026.",
     "Quarterly pest control begins in September 2026 and continues on an ongoing basis.",
     "Cosmetic and lower-priority exterior items are scheduled after safety, systems, and interior comfort work."
   ]
