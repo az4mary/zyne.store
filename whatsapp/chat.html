@@ -1,488 +1,381 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Design Token Messenger</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            primary: '#25D366',
-                            dark: '#00a884',
-                            accent: '#128C7E',
-                            teal: '#075E54'
-                        },
-                        // Light Mode Design Tokens
-                        light: {
-                            bg: '#f0f2f5',
-                            sidebar: '#ffffff',
-                            header: '#f0f2f5',
-                            hover: '#f5f6f6',
-                            active: '#e9edef',
-                            text: '#111b21',
-                            muted: '#667781',
-                            border: '#e9edef',
-                            bubbleSent: '#d9fdd3',
-                            bubbleReceived: '#ffffff'
-                        },
-                        // Dark Mode Design Tokens
-                        dark: {
-                            bg: '#0c1317',
-                            sidebar: '#111b21',
-                            header: '#202c33',
-                            hover: '#202c33',
-                            active: '#2a3942',
-                            text: '#e9edef',
-                            muted: '#8696a0',
-                            border: '#222d34',
-                            bubbleSent: '#005c4b',
-                            bubbleReceived: '#202c33'
-                        }
-                    }
-                }
-            }
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>WhatsApp Mobile Viewport</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Work Sans', 'sans-serif'],
+          },
+          colors: {
+            'wa-green': '#25D366',
+            'wa-teal': '#128C7E',
+            'wa-dark-teal': '#075E54',
+            'wa-light-green': '#D9FDD3',
+            'wa-dark-green': '#005C4B',
+            'wa-bg-light': '#E5DDD5',
+            'wa-bg-dark': '#0B141A',
+            'wa-panel-light': '#FFFFFF',
+            'wa-panel-dark': '#111B21',
+            'wa-bubble-incoming-light': '#FFFFFF',
+            'wa-bubble-incoming-dark': '#202C33',
+            'wa-text-primary-light': '#111B21',
+            'wa-text-primary-dark': '#E9EDEF',
+            'wa-text-muted-light': '#667781',
+            'wa-text-muted-dark': '#8696A0',
+          }
         }
-    </script>
-
-    <style>
-        /* Custom scrollbar for chat feel */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(100, 100, 100, 0.2);
-            border-radius: 3px;
-        }
-        .chat-wallpaper {
-            background-color: #efeae2;
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 16px 16px;
-        }
-        .dark .chat-wallpaper {
-            background-color: #0b141a;
-            background-image: radial-gradient(#1e293b 1px, transparent 1px);
-            background-size: 16px 16px;
-        }
-        /* Tail positioning for WhatsApp-style bubbles */
-        .bubble-sent::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -8px;
-            width: 0;
-            height: 0;
-            border-top: 8px solid #d9fdd3;
-            border-right: 8px solid transparent;
-        }
-        .dark .bubble-sent::after {
-            border-top-color: #005c4b;
-        }
-        .bubble-received::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -8px;
-            width: 0;
-            height: 0;
-            border-top: 8px solid #ffffff;
-            border-left: 8px solid transparent;
-        }
-        .dark .bubble-received::before {
-            border-top-color: #202c33;
-        }
-    </style>
+      }
+    };
+  </script>
+  <style>
+    /* Mobile frame & custom scrollbar styling */
+    body {
+      background: #0f172a;
+      font-family: 'Work Sans', sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.4);
+      border-radius: 4px;
+    }
+    /* Dynamic wallpaper pattern using CSS gradients */
+    .chat-bg-pattern {
+      background-color: #efeae2;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 0);
+      background-size: 16px 16px;
+    }
+    .dark .chat-bg-pattern {
+      background-color: #0b141a;
+      background-image: radial-gradient(#1e293b 1px, transparent 0);
+      background-size: 16px 16px;
+    }
+  </style>
 </head>
-<body class="font-sans antialiased bg-slate-200 dark:bg-slate-950 h-screen overflow-hidden flex items-center justify-center p-0 sm:p-2 md:p-4">
+<body class="h-full flex items-center justify-center p-0 md:p-6 overflow-hidden select-none">
 
-    <!-- Main Container Shell -->
-    <div class="w-full h-full max-w-7xl bg-white dark:bg-[#111b21] rounded-none sm:rounded-xl shadow-2xl flex overflow-hidden border border-slate-300 dark:border-slate-800">
-
-        <!-- ================= SIDEBAR / CHAT LIST ================= -->
-        <aside id="sidebar" class="w-full md:w-[380px] lg:w-[420px] flex-shrink-0 flex flex-col border-r border-slate-200 dark:border-[#222d34] bg-white dark:bg-[#111b21] z-10 transition-all duration-300">
-            
-            <!-- Sidebar Header -->
-            <header class="h-16 px-4 bg-[#f0f2f5] dark:bg-[#202c33] flex items-center justify-between border-b border-slate-200 dark:border-[#222d34]">
-                <div class="flex items-center space-x-3">
-                    <img id="user-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="My Profile" class="w-10 h-10 rounded-full object-cover cursor-pointer hover:opacity-90 transition-opacity">
-                    <span class="font-bold text-slate-800 dark:text-[#e9edef] text-base">Chats</span>
-                </div>
-                <div class="flex items-center space-x-1 text-slate-600 dark:text-[#8696a0]">
-                    <!-- Dark/Light Theme Toggle -->
-                    <button id="theme-toggle" class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Toggle Dark/Light Mode">
-                        <i class="fa-solid fa-moon text-lg dark:hidden"></i>
-                        <i class="fa-solid fa-sun text-lg hidden dark:block text-amber-400"></i>
-                    </button>
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="New Chat">
-                        <i class="fa-solid fa-message text-base"></i>
-                    </button>
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Menu">
-                        <i class="fa-solid fa-ellipsis-vertical text-base"></i>
-                    </button>
-                </div>
-            </header>
-
-            <!-- Search Bar -->
-            <div class="p-2 bg-white dark:bg-[#111b21] border-b border-slate-100 dark:border-[#222d34]">
-                <div class="relative flex items-center bg-[#f0f2f5] dark:bg-[#202c33] rounded-lg px-3 py-1.5 focus-within:ring-1 focus-within:ring-[#25D366]">
-                    <i class="fa-solid fa-magnifying-glass text-slate-400 dark:text-[#8696a0] text-sm mr-3"></i>
-                    <input id="search-input" type="text" placeholder="Search or start new chat" class="w-full bg-transparent text-sm text-slate-800 dark:text-[#e9edef] placeholder-slate-500 dark:placeholder-[#8696a0] focus:outline-none">
-                </div>
-            </div>
-
-            <!-- Filter Chips -->
-            <div class="flex items-center space-x-2 px-3 py-2 bg-white dark:bg-[#111b21] border-b border-slate-100 dark:border-[#222d34] overflow-x-auto text-xs font-medium">
-                <button class="px-3 py-1 rounded-full bg-[#e7fce8] text-[#00a884] dark:bg-[#0a332c] dark:text-[#25D366] font-semibold">All</button>
-                <button class="px-3 py-1 rounded-full bg-[#f0f2f5] dark:bg-[#202c33] text-slate-600 dark:text-[#8696a0] hover:bg-slate-200 dark:hover:bg-[#2a3942]">Unread</button>
-                <button class="px-3 py-1 rounded-full bg-[#f0f2f5] dark:bg-[#202c33] text-slate-600 dark:text-[#8696a0] hover:bg-slate-200 dark:hover:bg-[#2a3942]">Favorites</button>
-                <button class="px-3 py-1 rounded-full bg-[#f0f2f5] dark:bg-[#202c33] text-slate-600 dark:text-[#8696a0] hover:bg-slate-200 dark:hover:bg-[#2a3942]">Groups</button>
-            </div>
-
-            <!-- Chat List Scroll Area -->
-            <div id="chat-list" class="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-[#222d34]/50">
-                <!-- Dynamic Chat Items Injected Here -->
-            </div>
-        </aside>
-
-        <!-- ================= MAIN CHAT PANEL ================= -->
-        <main id="chat-panel" class="hidden md:flex flex-1 flex-col h-full bg-[#efeae2] dark:bg-[#0b141a] relative">
-            
-            <!-- Chat Panel Header -->
-            <header id="chat-header" class="h-16 px-4 bg-[#f0f2f5] dark:bg-[#202c33] flex items-center justify-between border-b border-slate-200 dark:border-[#222d34] z-10">
-                <div class="flex items-center space-x-3">
-                    <button id="back-button" class="md:hidden text-slate-600 dark:text-[#8696a0] p-2 rounded-full hover:bg-slate-200 dark:hover:bg-[#2a3942]">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <div class="relative cursor-pointer">
-                        <img id="active-chat-avatar" src="" alt="" class="w-10 h-10 rounded-full object-cover">
-                        <span id="active-chat-status-dot" class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-[#202c33] rounded-full"></span>
-                    </div>
-                    <div class="cursor-pointer">
-                        <h2 id="active-chat-name" class="font-semibold text-slate-900 dark:text-[#e9edef] text-base leading-tight">Select a conversation</h2>
-                        <p id="active-chat-status" class="text-xs text-slate-500 dark:text-[#8696a0]">online</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-1 text-slate-600 dark:text-[#8696a0]">
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Video call">
-                        <i class="fa-solid fa-video text-base"></i>
-                    </button>
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Voice call">
-                        <i class="fa-solid fa-phone text-sm"></i>
-                    </button>
-                    <div class="h-5 w-[1px] bg-slate-300 dark:bg-slate-700 mx-1"></div>
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Search messages">
-                        <i class="fa-solid fa-magnifying-glass text-base"></i>
-                    </button>
-                    <button class="p-2.5 hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="More options">
-                        <i class="fa-solid fa-ellipsis-vertical text-base"></i>
-                    </button>
-                </div>
-            </header>
-
-            <!-- Messages Stream Area -->
-            <div id="messages-container" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 chat-wallpaper">
-                <!-- Messages render dynamically -->
-            </div>
-
-            <!-- Message Input Bar -->
-            <footer class="p-3 bg-[#f0f2f5] dark:bg-[#202c33] flex items-center space-x-2 border-t border-slate-200 dark:border-[#222d34] z-10">
-                <button class="p-2.5 text-slate-600 dark:text-[#8696a0] hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Emoji">
-                    <i class="fa-regular fa-face-smile text-xl"></i>
-                </button>
-                <button class="p-2.5 text-slate-600 dark:text-[#8696a0] hover:bg-slate-200 dark:hover:bg-[#2a3942] rounded-full transition-colors" title="Attach file">
-                    <i class="fa-solid fa-paperclip text-lg"></i>
-                </button>
-
-                <!-- Input Field container -->
-                <form id="chat-form" class="flex-1 flex items-center">
-                    <input id="message-input" type="text" placeholder="Type a message" autocomplete="off" class="w-full bg-white dark:bg-[#2a3942] text-slate-900 dark:text-[#e9edef] placeholder-slate-500 dark:placeholder-[#8696a0] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500">
-                    <button type="submit" class="hidden">Send</button>
-                </form>
-
-                <!-- Action Button (Mic / Send) -->
-                <button id="send-btn" class="p-3 bg-[#00a884] hover:bg-[#008f70] text-white rounded-full flex items-center justify-center transition-transform active:scale-95 shadow-md">
-                    <i id="send-icon" class="fa-solid fa-paper-plane text-sm"></i>
-                </button>
-            </footer>
-        </main>
+  <!-- Outer Mobile Device Frame Container -->
+  <div class="relative w-full h-full md:w-[375px] md:h-[812px] bg-black md:rounded-[48px] shadow-2xl overflow-hidden border-0 md:border-[10px] border-slate-800 flex flex-col">
+    
+    <!-- iPhone Style Notch Header (Desktop view) -->
+    <div class="hidden md:flex absolute top-0 left-0 right-0 h-7 z-50 justify-between items-center px-6 pt-1 text-white text-xs font-semibold">
+      <span>9:41</span>
+      <div class="w-24 h-4 bg-black rounded-b-xl flex items-center justify-center">
+        <div class="w-3 h-3 rounded-full bg-slate-900 border border-slate-800"></div>
+      </div>
+      <div class="flex items-center gap-1.5 text-[11px]">
+        <span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+        <span class="material-symbols-outlined text-[14px]">wifi</span>
+        <span class="material-symbols-outlined text-[14px]">battery_full</span>
+      </div>
     </div>
 
-    <!-- Application Script -->
-    <script>
-        // Mock State & Data Structures
-        const chats = [
-            {
-                id: '1',
-                name: 'Design System Guild',
-                avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=120&q=80',
-                status: 'Alex, Elena, Sarah...',
-                unread: 2,
-                messages: [
-                    { id: 'm1', text: 'Hey team, how are the new design tokens coming along?', sender: 'them', time: '10:14 AM' },
-                    { id: 'm2', text: 'We finalized the color architecture with full WCAG AAA contrast compliance.', sender: 'me', time: '10:15 AM', status: 'read' },
-                    { id: 'm3', text: 'good-looking reads as smart', sender: 'them', time: '10:16 AM' }
-                ]
-            },
-            {
-                id: '2',
-                name: 'Sarah Connor',
-                avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-                status: 'online',
-                unread: 0,
-                messages: [
-                    { id: 'm10', text: 'Did you review the component layout spec for mobile screens?', sender: 'them', time: '9:30 AM' },
-                    { id: 'm11', text: 'Yes! The responsive truncation on text-body-sm is rock solid.', sender: 'me', time: '9:45 AM', status: 'read' }
-                ]
-            },
-            {
-                id: '3',
-                name: 'Alex Rivera',
-                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-                status: 'last seen today at 11:05 AM',
-                unread: 0,
-                messages: [
-                    { id: 'm20', text: 'Let’s sync on the dark mode color scheme tomorrow.', sender: 'them', time: 'Yesterday' },
-                    { id: 'm21', text: 'Sounds good! Using #005c4b for sent bubbles works great.', sender: 'me', time: 'Yesterday', status: 'read' }
-                ]
-            },
-            {
-                id: '4',
-                name: 'Frontend Core Team',
-                avatar: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=120&q=80',
-                status: 'Click for group info',
-                unread: 5,
-                messages: [
-                    { id: 'm30', text: 'Merging the unified design token framework to main base.', sender: 'them', time: '8:00 AM' }
-                ]
-            }
-        ];
+    <!-- Inner App Container (Mobile Viewport) -->
+    <div id="app-root" class="w-full h-full pt-0 md:pt-7 flex flex-col bg-wa-panel-light dark:bg-wa-panel-dark text-wa-text-primary-light dark:text-wa-text-primary-dark transition-colors duration-200">
+      
+      <!-- Top Navigation / Header -->
+      <header id="main-header" class="bg-wa-dark-teal dark:bg-wa-panel-dark text-white px-4 py-3 flex items-center justify-between shrink-0 shadow-md">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-xl tracking-tight">WhatsApp</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="toggleDarkMode()" class="p-1 hover:bg-white/10 rounded-full transition" title="Toggle Theme">
+            <span class="material-symbols-outlined text-[20px]">dark_mode</span>
+          </button>
+          <button class="p-1 hover:bg-white/10 rounded-full transition">
+            <span class="material-symbols-outlined text-[20px]">search</span>
+          </button>
+          <button class="p-1 hover:bg-white/10 rounded-full transition">
+            <span class="material-symbols-outlined text-[20px]">more_vert</span>
+          </button>
+        </div>
+      </header>
 
-        let activeChatId = '1';
+      <!-- Main View Content Area -->
+      <main class="flex-1 relative overflow-hidden flex flex-col">
+        
+        <!-- Tab 1: Chats List View -->
+        <section id="view-chats" class="w-full h-full flex flex-col bg-wa-panel-light dark:bg-wa-panel-dark">
+          <!-- Search Bar -->
+          <div class="p-2 bg-slate-100 dark:bg-slate-800/50">
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-wa-panel-dark rounded-lg border border-slate-200 dark:border-slate-700 text-sm">
+              <span class="material-symbols-outlined text-wa-text-muted-light dark:text-wa-text-muted-dark text-[18px]">search</span>
+              <input type="text" placeholder="Search or start new chat" class="bg-transparent outline-none w-full text-xs text-wa-text-primary-light dark:text-wa-text-primary-dark placeholder:text-wa-text-muted-light dark:placeholder:text-wa-text-muted-dark"/>
+            </div>
+          </div>
 
-        // DOM Elements
-        const chatListEl = document.getElementById('chat-list');
-        const messagesContainer = document.getElementById('messages-container');
-        const activeChatName = document.getElementById('active-chat-name');
-        const activeChatAvatar = document.getElementById('active-chat-avatar');
-        const activeChatStatus = document.getElementById('active-chat-status');
-        const messageInput = document.getElementById('message-input');
-        const chatForm = document.getElementById('chat-form');
-        const sendBtn = document.getElementById('send-btn');
-        const searchInput = document.getElementById('search-input');
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const sidebar = document.getElementById('sidebar');
-        const chatPanel = document.getElementById('chat-panel');
-        const backBtn = document.getElementById('back-button');
-
-        // Theme Toggle Handler
-        themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-        });
-
-        // Mobile Navigation
-        backBtn.addEventListener('click', () => {
-            chatPanel.classList.add('hidden');
-            sidebar.classList.remove('hidden');
-        });
-
-        // Render Chat List Side Panel
-        function renderChatList(filterQuery = '') {
-            chatListEl.innerHTML = '';
+          <!-- Chat List -->
+          <div class="flex-1 overflow-y-auto custom-scroll divide-y divide-slate-100 dark:divide-slate-800/40">
             
-            const filteredChats = chats.filter(c => 
-                c.name.toLowerCase().includes(filterQuery.toLowerCase()) ||
-                c.messages[c.messages.length - 1]?.text.toLowerCase().includes(filterQuery.toLowerCase())
-            );
+            <!-- Chat Item 1 -->
+            <div onclick="openChat('Sarah Connor', 'online')" class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition">
+              <div class="relative shrink-0">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" class="w-12 h-12 rounded-full object-cover"/>
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-wa-green border-2 border-white dark:border-wa-panel-dark rounded-full"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline mb-0.5">
+                  <h4 class="font-semibold text-sm truncate">Sarah Connor</h4>
+                  <span class="text-[11px] text-wa-green font-medium">10:42 AM</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <p class="text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark truncate">Hey! Are we still meeting for design tokens review?</p>
+                  <span class="bg-wa-green text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shrink-0">2</span>
+                </div>
+              </div>
+            </div>
 
-            filteredChats.forEach(chat => {
-                const lastMsg = chat.messages[chat.messages.length - 1] || { text: '', time: '' };
-                const isActive = chat.id === activeChatId;
+            <!-- Chat Item 2 -->
+            <div onclick="openChat('Design Systems Group', 'Alex, John, You')" class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition">
+              <div class="w-12 h-12 rounded-full bg-wa-teal text-white flex items-center justify-center font-bold shrink-0">
+                DS
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline mb-0.5">
+                  <h4 class="font-semibold text-sm truncate">Design Systems Team</h4>
+                  <span class="text-[11px] text-wa-text-muted-light dark:text-wa-text-muted-dark">Yesterday</span>
+                </div>
+                <div class="flex items-center gap-1 text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark truncate">
+                  <span class="material-symbols-outlined text-[14px] text-blue-500">done_all</span>
+                  <span class="truncate">Alex: Updated typography scale tokens</span>
+                </div>
+              </div>
+            </div>
 
-                const chatItem = document.createElement('div');
-                chatItem.className = `flex items-center px-4 py-3 cursor-pointer transition-colors duration-150 ${
-                    isActive ? 'bg-[#f0f2f5] dark:bg-[#2a3942]' : 'hover:bg-[#f5f6f6] dark:hover:bg-[#202c33]'
-                }`;
+            <!-- Chat Item 3 -->
+            <div onclick="openChat('Alex Rivera', 'offline')" class="flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" class="w-12 h-12 rounded-full object-cover shrink-0"/>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline mb-0.5">
+                  <h4 class="font-semibold text-sm truncate">Alex Rivera</h4>
+                  <span class="text-[11px] text-wa-text-muted-light dark:text-wa-text-muted-dark">Monday</span>
+                </div>
+                <p class="text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark truncate">Check out the spacing system in the updated design.md</p>
+              </div>
+            </div>
 
-                chatItem.onclick = () => selectChat(chat.id);
+          </div>
+        </section>
 
-                chatItem.innerHTML = `
-                    <div class="relative flex-shrink-0 mr-3">
-                        <img src="${chat.avatar}" alt="${chat.name}" class="w-12 h-12 rounded-full object-cover">
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h3 class="text-sm font-semibold text-slate-900 dark:text-[#e9edef] truncate">${chat.name}</h3>
-                            <span class="text-[11px] text-[#667781] dark:text-[#8696a0] font-normal ml-2 flex-shrink-0">${lastMsg.time}</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <!-- Design Token Class Target: font-body-sm text-body-sm text-text-muted truncate -->
-                            <p class="font-body-sm text-xs text-[#667781] dark:text-[#8696a0] truncate mt-0.5 flex-1 pr-2">
-                                ${lastMsg.sender === 'me' ? '<i class="fa-solid fa-check-double text-sky-500 text-[10px] mr-1"></i>' : ''}
-                                ${lastMsg.text}
-                            </p>
-                            ${chat.unread > 0 ? `
-                                <span class="bg-[#25D366] text-white font-bold text-[10px] rounded-full h-4 min-w-[16px] px-1 flex items-center justify-center flex-shrink-0">
-                                    ${chat.unread}
-                                </span>
-                            ` : ''}
-                        </div>
-                    </div>
-                `;
-                chatListEl.appendChild(chatItem);
-            });
+        <!-- Tab 2: Status View (Hidden by default) -->
+        <section id="view-status" class="hidden w-full h-full flex flex-col p-4 bg-wa-panel-light dark:bg-wa-panel-dark">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-wa-text-muted-light dark:text-wa-text-muted-dark mb-3">Status Updates</h3>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="relative">
+              <div class="w-12 h-12 rounded-full border-2 border-dashed border-wa-green p-0.5">
+                <div class="w-full h-full bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center">
+                  <span class="material-symbols-outlined text-wa-green">add</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">My Status</h4>
+              <p class="text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark">Tap to add status update</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: Calls View (Hidden by default) -->
+        <section id="view-calls" class="hidden w-full h-full flex flex-col p-4 bg-wa-panel-light dark:bg-wa-panel-dark">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-wa-text-muted-light dark:text-wa-text-muted-dark mb-3">Recent Calls</h3>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+              <span class="material-symbols-outlined text-wa-green">call</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-sm">Sarah Connor</h4>
+              <p class="text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark">Today, 9:15 AM</p>
+            </div>
+            <span class="material-symbols-outlined text-wa-green text-[20px]">call</span>
+          </div>
+        </section>
+
+        <!-- Tab 4: Settings View (Hidden by default) -->
+        <section id="view-settings" class="hidden w-full h-full flex flex-col p-4 bg-wa-panel-light dark:bg-wa-panel-dark">
+          <div class="flex items-center gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <div class="w-14 h-14 rounded-full bg-wa-teal text-white flex items-center justify-center text-xl font-bold">
+              ME
+            </div>
+            <div>
+              <h4 class="font-semibold text-base">User Name</h4>
+              <p class="text-xs text-wa-text-muted-light dark:text-wa-text-muted-dark">Available | Building Design Tokens</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Active Conversation Overlay (Hidden by default) -->
+        <div id="active-chat" class="hidden absolute inset-0 z-40 bg-wa-panel-light dark:bg-wa-panel-dark flex flex-col">
+          <!-- Chat Header -->
+          <div class="bg-wa-dark-teal dark:bg-wa-panel-dark text-white px-3 py-2 flex items-center justify-between shrink-0 border-b border-white/10 shadow-sm">
+            <div class="flex items-center gap-2 min-w-0">
+              <button onclick="closeChat()" class="p-1 hover:bg-white/10 rounded-full">
+                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+              </button>
+              <div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden shrink-0">
+                <img id="chat-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" class="w-full h-full object-cover"/>
+              </div>
+              <div class="min-w-0">
+                <h4 id="chat-title" class="font-semibold text-sm truncate">Sarah Connor</h4>
+                <p id="chat-status" class="text-[10px] text-emerald-200 truncate">online</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <button class="p-1 hover:bg-white/10 rounded-full"><span class="material-symbols-outlined text-[18px]">videocam</span></button>
+              <button class="p-1 hover:bg-white/10 rounded-full"><span class="material-symbols-outlined text-[18px]">call</span></button>
+              <button class="p-1 hover:bg-white/10 rounded-full"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+            </div>
+          </div>
+
+          <!-- Messages Body -->
+          <div id="messages-container" class="flex-1 overflow-y-auto p-3 custom-scroll chat-bg-pattern flex flex-col gap-2">
+            <!-- Timestamp Pill -->
+            <div class="self-center bg-white/80 dark:bg-slate-800/80 backdrop-blur px-2.5 py-0.5 rounded-md text-[10px] font-medium text-wa-text-muted-light dark:text-wa-text-muted-dark shadow-sm">
+              TODAY
+            </div>
+
+            <!-- Incoming Message -->
+            <div class="self-start max-w-[80%] bg-wa-bubble-incoming-light dark:bg-wa-bubble-incoming-dark rounded-lg p-2 shadow-sm text-xs relative group">
+              <p class="text-wa-text-primary-light dark:text-wa-text-primary-dark">Hey! Are we still meeting for design tokens review?</p>
+              <div class="flex items-center justify-end gap-1 mt-1 text-[9px] text-wa-text-muted-light dark:text-wa-text-muted-dark">
+                <span>10:42 AM</span>
+              </div>
+            </div>
+
+            <!-- Outgoing Message -->
+            <div class="self-end max-w-[80%] bg-wa-light-green dark:bg-wa-dark-green rounded-lg p-2 shadow-sm text-xs">
+              <p class="text-wa-text-primary-light dark:text-wa-text-primary-dark">Yes! Testing out the high-contrast color variables now.</p>
+              <div class="flex items-center justify-end gap-1 mt-1 text-[9px] text-wa-text-muted-light dark:text-wa-text-muted-dark">
+                <span>10:43 AM</span>
+                <span class="material-symbols-outlined text-[12px] text-blue-500">done_all</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <div class="p-2 bg-slate-100 dark:bg-wa-panel-dark flex items-center gap-2 shrink-0 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex-1 flex items-center bg-white dark:bg-slate-800 rounded-full px-3 py-1.5 border border-slate-200 dark:border-slate-700">
+              <span class="material-symbols-outlined text-wa-text-muted-light dark:text-wa-text-muted-dark text-[18px] mr-1">sentiment_satisfied</span>
+              <input id="message-input" type="text" placeholder="Message" class="bg-transparent outline-none w-full text-xs text-wa-text-primary-light dark:text-wa-text-primary-dark placeholder:text-wa-text-muted-light" onkeypress="handleKeyPress(event)"/>
+              <span class="material-symbols-outlined text-wa-text-muted-light dark:text-wa-text-muted-dark text-[18px] ml-1">attach_file</span>
+            </div>
+            <button onclick="sendMessage()" class="w-9 h-9 rounded-full bg-wa-green text-white flex items-center justify-center shrink-0 shadow-md active:scale-95 transition">
+              <span class="material-symbols-outlined text-[18px]">send</span>
+            </button>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Bottom Navigation Bar -->
+      <nav class="h-14 bg-wa-panel-light dark:bg-wa-panel-dark border-t border-slate-200 dark:border-slate-800 flex items-center justify-around shrink-0 text-wa-text-muted-light dark:text-wa-text-muted-dark">
+        <button onclick="switchTab('chats')" id="tab-chats" class="flex flex-col items-center gap-0.5 text-wa-green">
+          <span class="material-symbols-outlined text-[20px]">chat</span>
+          <span class="text-[10px] font-medium">Chats</span>
+        </button>
+        <button onclick="switchTab('status')" id="tab-status" class="flex flex-col items-center gap-0.5">
+          <span class="material-symbols-outlined text-[20px]">donut_large</span>
+          <span class="text-[10px] font-medium">Status</span>
+        </button>
+        <button onclick="switchTab('calls')" id="tab-calls" class="flex flex-col items-center gap-0.5">
+          <span class="material-symbols-outlined text-[20px]">call</span>
+          <span class="text-[10px] font-medium">Calls</span>
+        </button>
+        <button onclick="switchTab('settings')" id="tab-settings" class="flex flex-col items-center gap-0.5">
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+          <span class="text-[10px] font-medium">Settings</span>
+        </button>
+      </nav>
+
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle Functionality
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    // View / Tab Switching Logic
+    function switchTab(tabName) {
+      ['chats', 'status', 'calls', 'settings'].forEach(t => {
+        const view = document.getElementById(`view-${t}`);
+        const tabBtn = document.getElementById(`tab-${t}`);
+        if (view && tabBtn) {
+          if (t === tabName) {
+            view.classList.remove('hidden');
+            tabBtn.classList.add('text-wa-green');
+            tabBtn.classList.remove('text-wa-text-muted-light', 'dark:text-wa-text-muted-dark');
+          } else {
+            view.classList.add('hidden');
+            tabBtn.classList.remove('text-wa-green');
+            tabBtn.classList.add('text-wa-text-muted-light', 'dark:text-wa-text-muted-dark');
+          }
         }
+      });
+    }
 
-        // Render Active Conversation View
-        function renderActiveConversation() {
-            const currentChat = chats.find(c => c.id === activeChatId);
-            if (!currentChat) return;
+    // Active Chat Modal Functions
+    function openChat(name, status) {
+      document.getElementById('chat-title').textContent = name;
+      document.getElementById('chat-status').textContent = status;
+      document.getElementById('active-chat').classList.remove('hidden');
+    }
 
-            // Header details
-            activeChatName.textContent = currentChat.name;
-            activeChatAvatar.src = currentChat.avatar;
-            activeChatStatus.textContent = currentChat.status;
+    function closeChat() {
+      document.getElementById('active-chat').classList.add('hidden');
+    }
 
-            // Render Messages
-            messagesContainer.innerHTML = '';
-            
-            // Timestamp Header Separator
-            const dateDivider = document.createElement('div');
-            dateDivider.className = 'flex justify-center my-2';
-            dateDivider.innerHTML = `
-                <span class="bg-white/80 dark:bg-[#111b21]/80 text-[#667781] dark:text-[#8696a0] text-[11px] font-medium px-3 py-1 rounded-lg shadow-sm border border-slate-200/50 dark:border-slate-800/50 uppercase tracking-wider">
-                    Today
-                </span>
-            `;
-            messagesContainer.appendChild(dateDivider);
+    // Interactive Message Sending
+    function sendMessage() {
+      const input = document.getElementById('message-input');
+      const text = input.value.trim();
+      if (!text) return;
 
-            currentChat.messages.forEach(msg => {
-                const isMe = msg.sender === 'me';
-                const wrapper = document.createElement('div');
-                wrapper.className = `flex ${isMe ? 'justify-end' : 'justify-start'} mb-1`;
+      const container = document.getElementById('messages-container');
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                const bubble = document.createElement('div');
-                bubble.className = `relative max-w-[75%] sm:max-w-[65%] rounded-lg px-3 py-1.5 shadow-sm text-sm ${
-                    isMe 
-                    ? 'bg-[#d9fdd3] dark:bg-[#005c4b] text-slate-900 dark:text-[#e9edef] rounded-tr-none bubble-sent' 
-                    : 'bg-white dark:bg-[#202c33] text-slate-900 dark:text-[#e9edef] rounded-tl-none bubble-received'
-                }`;
+      const msgHTML = `
+        <div class="self-end max-w-[80%] bg-wa-light-green dark:bg-wa-dark-green rounded-lg p-2 shadow-sm text-xs">
+          <p class="text-wa-text-primary-light dark:text-wa-text-primary-dark">${escapeHtml(text)}</p>
+          <div class="flex items-center justify-end gap-1 mt-1 text-[9px] text-wa-text-muted-light dark:text-wa-text-muted-dark">
+            <span>${timeStr}</span>
+            <span class="material-symbols-outlined text-[12px] text-blue-500">done</span>
+          </div>
+        </div>
+      `;
 
-                bubble.innerHTML = `
-                    <div class="text-sm leading-relaxed break-words pr-12">${escapeHTML(msg.text)}</div>
-                    <div class="absolute bottom-1 right-2 flex items-center space-x-1 text-[10px] text-[#667781] dark:text-[#8696a0]">
-                        <span>${msg.time}</span>
-                        ${isMe ? `<i class="fa-solid fa-check-double text-sky-500 text-[10px] ml-0.5"></i>` : ''}
-                    </div>
-                `;
+      container.insertAdjacentHTML('beforeend', msgHTML);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+    }
 
-                wrapper.appendChild(bubble);
-                messagesContainer.appendChild(wrapper);
-            });
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    }
 
-            // Auto-scroll to bottom
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        // Switch Active Chat
-        function selectChat(id) {
-            activeChatId = id;
-            const chat = chats.find(c => c.id === id);
-            if (chat) chat.unread = 0; // Clear unread on selection
-            
-            renderChatList(searchInput.value);
-            renderActiveConversation();
-
-            // Handle mobile responsive pane shift
-            if (window.innerWidth < 768) {
-                sidebar.classList.add('hidden');
-                chatPanel.classList.remove('hidden');
-            }
-        }
-
-        // Handle Messaging Logic
-        function handleSendMessage(e) {
-            if (e) e.preventDefault();
-            const text = messageInput.value.trim();
-            if (!text) return;
-
-            const currentChat = chats.find(c => c.id === activeChatId);
-            if (!currentChat) return;
-
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            // Push User Message
-            currentChat.messages.push({
-                id: 'm_' + Date.now(),
-                text: text,
-                sender: 'me',
-                time: timeStr,
-                status: 'read'
-            });
-
-            messageInput.value = '';
-            renderChatList(searchInput.value);
-            renderActiveConversation();
-
-            // Trigger Mock Auto-Response after 1.2s
-            setTimeout(() => {
-                currentChat.messages.push({
-                    id: 'm_reply_' + Date.now(),
-                    text: getMockReply(text),
-                    sender: 'them',
-                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                });
-                renderChatList(searchInput.value);
-                if (activeChatId === currentChat.id) {
-                    renderActiveConversation();
-                }
-            }, 1200);
-        }
-
-        // Utility: Contextual Mock Replies
-        function getMockReply(userText) {
-            const replies = [
-                "That design token system translates really smoothly onto mobile viewports!",
-                "Looks great! Legibility and typography tokens pass AAA guidelines perfectly.",
-                "Agreed! Truncating text-body-sm keeps list items ultra clean.",
-                "Received! I'll update our design tokens file accordingly."
-            ];
-            return replies[Math.floor(Math.random() * replies.length)];
-        }
-
-        // Utility: HTML Escaping
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            );
-        }
-
-        // Event Listeners
-        chatForm.addEventListener('submit', handleSendMessage);
-        sendBtn.addEventListener('click', handleSendMessage);
-        searchInput.addEventListener('input', (e) => renderChatList(e.target.value));
-
-        // Initial Initialization
-        renderChatList();
-        renderActiveConversation();
-    </script>
+    function escapeHtml(string) {
+      return String(string).replace(/[&<>"']/g, function (s) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[s];
+      });
+    }
+  </script>
 </body>
 </html>
